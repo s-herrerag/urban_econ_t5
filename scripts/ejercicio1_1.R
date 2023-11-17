@@ -93,13 +93,13 @@ cors_panel_data <- panel_data_sf %>%
 cor_inc <- ggplot(cors_panel_data, aes(x = prop_in_pop, y = Median_Inc, color = minority)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm") +
-  ylab("Ingreso mediano") +
+  ylab("Ingreso mediano (USD)") +
   xlab("Proporción de la minoría en la población del census tract") +
   labs(color = "Minoría") +
   scale_color_manual(values = c("red", "blue")) +
   theme_minimal() 
 
-ggsave("../views/cor_minority_inc.png", cor_inc, dpi = 300)
+ggsave("../views/cor_minority_inc.png", cor_inc, height = 16, width = 20, units = "cm", dpi = 300)
 
 # Ubicacion de las minorias -----------------------------------------------
 
@@ -120,6 +120,8 @@ map_hispanics <- ggplot(wide_minorities) +
                guide="coloursteps", breaks=seq(0,100,10), limits=c(0, 100),
                show.limits=TRUE)
 
+ggsave("../views/map_hispanics.png", map_hispanics, dpi = 300)
+
 map_blacks <- ggplot(wide_minorities) +
   geom_sf(aes(fill = prop_black_2020)) +
   geom_sf(data = cbd_chicago) +
@@ -134,7 +136,7 @@ map_blacks <- ggplot(wide_minorities) +
                guide="coloursteps", breaks=seq(0,100,10), limits=c(0, 100),
                show.limits=TRUE)
 
-
+ggsave("../views/map_blacks.png", map_blacks, dpi = 300)
 
 # Ammenities: Crimen ---------------------------------------------------
 
